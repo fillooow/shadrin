@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/home_dest"
-        android:name="com.fillooow.shadrin.content.ContentFragment"
+        android:name="com.fillooow.shadrin.ui.content.ContentFragment"
         android:label="ContentFragment"
         tools:layout="@layout/content_fragment">
 

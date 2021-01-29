@@ -1,4 +1,4 @@
-package com.fillooow.shadrin.content
+package com.fillooow.shadrin.ui.content
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

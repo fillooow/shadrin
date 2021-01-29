@@ -7,13 +7,13 @@
 
         <variable
             name="vm"
-            type="com.fillooow.shadrin.content.ContentViewModel" />
+            type="com.fillooow.shadrin.ui.content.ContentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".content.ContentFragment">
+        tools:context=".ui.content.ContentFragment">
 
         <ImageView
             android:id="@+id/content_fragment_gif_iv"
