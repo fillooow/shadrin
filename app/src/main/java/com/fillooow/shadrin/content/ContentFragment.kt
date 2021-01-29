@@ -22,4 +22,8 @@ class ContentFragment : Fragment(R.layout.content_fragment) {
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }
