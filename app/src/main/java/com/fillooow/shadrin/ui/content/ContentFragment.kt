@@ -15,8 +15,10 @@ class ContentFragment : Fragment(R.layout.content_fragment) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        val binding: ContentFragmentBinding =
-            DataBindingUtil.inflate(inflater, R.layout.content_fragment, container, false)
+        val binding: ContentFragmentBinding = ContentFragmentBinding.inflate(inflater)
+//            DataBindingUtil.inflate(inflater, R.layout.content_fragment, container, false)
+
+        binding.lifecycleOwner = this
 
         binding.vm = ViewModelProvider(this).get(ContentViewModel::class.java)
 
