@@ -15,23 +15,24 @@
         android:layout_height="match_parent"
         tools:context=".ui.content.ContentFragment">
 
+        <TextView
+            android:id="@+id/some_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{vm.response}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="somebody once told me" />
+
         <ImageView
             android:id="@+id/content_fragment_gif_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/some_text_view" />
-
-        <TextView
-            android:id="@+id/some_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{vm.lastName}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="somebody once told me" />
+            app:layout_constraintTop_toBottomOf="@id/some_text_view"
+            app:imageUrl="@{vm.property.gifURL}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
