@@ -1,6 +1,6 @@
 package com.fillooow.shadrin.ui.content
 
-import androidx.lifecycle.LiveData
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,31 +10,14 @@ import kotlinx.coroutines.launch
 
 class ContentViewModel : ViewModel() {
 
-    val description = MutableLiveData<String>()
-
-    private val _lastName = MutableLiveData("Ada")
-
-    val lastName: LiveData<String> = _lastName
-
-    private val _status = MutableLiveData<DevelopersLifeProperty>()
-
-    val status: LiveData<DevelopersLifeProperty>
-        get() = _status
-
-    // with new values
-    private val _properties = MutableLiveData<List<DevelopersLifeProperty>>()
-
-    val properties: LiveData<List<DevelopersLifeProperty>>
-        get() = _properties
-
-    private val _property = MutableLiveData<DevelopersLifeProperty>()
-
-    val property: LiveData<DevelopersLifeProperty>
-        get() = _property
-
     init {
         getProperty()
     }
+
+    private val responseCache = MutableLiveData<MutableList<DevelopersLifeProperty>>()
+    val currentItem = MutableLiveData<DevelopersLifeProperty>()
+
+    val status = MutableLiveData<DevelopersLifeProperty>()
 
     private fun getMarsRealEstateProperties() {
 
@@ -54,19 +37,16 @@ class ContentViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                val randomResult = DevelopersLifeApi.retrofitService.getRandomPost()
-                description.value = randomResult.description
-
-                _property.value = randomResult
+                val result = DevelopersLifeApi.retrofitService.getRandomPost()
+                currentItem.value = result
+                responseCache.value?.add(result)
             } catch (e: Exception) {
-                description.value = "Failure: ${e.message}"
+                Log.e("error", "Failure: ${e.message}")
             }
         }
     }
 
-    fun onClick() {
-        getProperty()
-    }
+    fun onClick() = ::getProperty
 }
 
 enum class LoadState { LOADING, ERROR, DONE }
