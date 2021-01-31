@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class ContentViewModel : ViewModel() {
 
-    val response = MutableLiveData<String>()
+    val description = MutableLiveData<String>()
 
     private val _lastName = MutableLiveData("Ada")
 
@@ -55,13 +55,17 @@ class ContentViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val randomResult = DevelopersLifeApi.retrofitService.getRandomPost()
-                response.value = "Success: ${randomResult.gifURL} Mars properties retrieved"
+                description.value = randomResult.description
 
                 _property.value = randomResult
             } catch (e: Exception) {
-                response.value = "Failure: ${e.message}"
+                description.value = "Failure: ${e.message}"
             }
         }
+    }
+
+    fun onClick() {
+        getProperty()
     }
 }
 
